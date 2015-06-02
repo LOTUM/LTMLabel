@@ -14,6 +14,7 @@
 		034D68B91B1E5CA200B6CE82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 034D68B81B1E5CA200B6CE82 /* Images.xcassets */; };
 		034D68BC1B1E5CA200B6CE82 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D68BA1B1E5CA200B6CE82 /* LaunchScreen.xib */; };
 		034D68C81B1E5CA200B6CE82 /* LTMLabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D68C71B1E5CA200B6CE82 /* LTMLabelTests.m */; };
+		034D68D41B1E5D1B00B6CE82 /* LTMLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 034D68D31B1E5D1B00B6CE82 /* LTMLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		034D68C11B1E5CA200B6CE82 /* LTMLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTMLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		034D68C61B1E5CA200B6CE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		034D68C71B1E5CA200B6CE82 /* LTMLabelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMLabelTests.m; sourceTree = "<group>"; };
+		034D68D21B1E5D1B00B6CE82 /* LTMLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMLabel.h; sourceTree = "<group>"; };
+		034D68D31B1E5D1B00B6CE82 /* LTMLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTMLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		034D68AA1B1E5CA200B6CE82 /* LTMLabel */ = {
 			isa = PBXGroup;
 			children = (
+				034D68D11B1E5D1B00B6CE82 /* Files */,
 				034D68AF1B1E5CA200B6CE82 /* AppDelegate.h */,
 				034D68B01B1E5CA200B6CE82 /* AppDelegate.m */,
 				034D68B21B1E5CA200B6CE82 /* ViewController.h */,
@@ -117,6 +121,15 @@
 				034D68C61B1E5CA200B6CE82 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		034D68D11B1E5D1B00B6CE82 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				034D68D21B1E5D1B00B6CE82 /* LTMLabel.h */,
+				034D68D31B1E5D1B00B6CE82 /* LTMLabel.m */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +234,7 @@
 			files = (
 				034D68B41B1E5CA200B6CE82 /* ViewController.m in Sources */,
 				034D68B11B1E5CA200B6CE82 /* AppDelegate.m in Sources */,
+				034D68D41B1E5D1B00B6CE82 /* LTMLabel.m in Sources */,
 				034D68AE1B1E5CA200B6CE82 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
