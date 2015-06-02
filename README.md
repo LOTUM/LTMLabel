@@ -1,4 +1,4 @@
-# SEBLabel
+# LTMLabel
 ----
 A label which is capable to draw attributed strings and add outer strokes, inner shadows and gradients to it. All attributed string properties are supported - like NSTextAttachments, NSParagraphStyles, ...
 
@@ -6,7 +6,7 @@ A label which is capable to draw attributed strings and add outer strokes, inner
 You are encouraged to set the `attributedString`property of the label. But there are also convenient setter for the UILabel default properties like `text`, `textColor`, `textAlignment`and `font`.
 
 ```objective-c
-SEBLabel* label = [[SEBLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+LTMLabel* label = [[LTMLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
 label.attributedString = [[NSAttributedString alloc] initWithString:@"Test text to draw"];
 ```
 
@@ -72,7 +72,7 @@ In case you want your label to grow in height or width depended on its content t
 
 To create a label which grows in height and scales down its text:
 ```objective-c
-SEBLabel* growAndScaleLabel = [[SEBLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+LTMLabel* growAndScaleLabel = [[LTMLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
 growAndScaleLabel.minimumScaleFactor = 0.75;
 growAndScaleLabel.maxSize = CGSizeMake(CGRectGetWidth(growAndScaleLabel.bounds), 150);
 ```
