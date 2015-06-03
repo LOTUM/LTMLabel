@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
                           DESC
   s.homepage            = "http://www.lotum.com"
   s.license             = 'MIT'
-  s.authors             = { "Sebastian Schilbe" => "schilbe@lotum.de" }
+  s.authors             = { "LOTUM GmbH" => "github@lotum.de" }
   s.platform            = :ios, '7.0'
   s.source              = { :git => "https://github.com/LOTUM/LTMLabel.git", :tag => s.version }
   s.source_files        = 'LTMLabel/Files/**/*.{h,m}'

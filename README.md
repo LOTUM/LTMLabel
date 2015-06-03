@@ -85,4 +85,3 @@ Original source and inspiration from:
 ##Contact
 
 * [http://www.lotum.de](http://www.lotum.de)
-* [https://twitter.com/bastian83](https://twitter.com/bastian83)
