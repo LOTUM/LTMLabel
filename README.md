@@ -85,4 +85,4 @@ Original source and inspiration from:
 ##Contact
 
 * [http://www.lotum.de](http://www.lotum.de)
-* [github@lotum.de](github [at] lotum.de)
+* github@lotum.de
