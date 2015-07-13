@@ -296,13 +296,6 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    if (self = [super initWithCoder:aDecoder])
-        [self initialize];
-    return self;
-}
-
 - (void)initialize
 {
     _maxSize = self.bounds.size;
@@ -613,6 +606,54 @@
     }
     return alignment;
 }
+
+#pragma mark - Coding
+
+-(void)encodeWithCoder:(nonnull NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.attributedText forKey:NSStringFromSelector(@selector(attributedText))];
+    [aCoder encodeObject:self.strokeWidths forKey:NSStringFromSelector(@selector(strokeWidths))];
+    [aCoder encodeObject:self.strokeColors forKey:NSStringFromSelector(@selector(strokeColors))];
+    [aCoder encodeFloat:self.minimumScaleFactor forKey:NSStringFromSelector(@selector(minimumScaleFactor))];
+    [aCoder encodeCGSize:self.maxSize forKey:NSStringFromSelector(@selector(maxSize))];
+    [aCoder encodeObject:self.gradientColors forKey:NSStringFromSelector(@selector(gradientColors))];
+    [aCoder encodeCGPoint:self.gradientStartPoint forKey:NSStringFromSelector(@selector(gradientStartPoint))];
+    [aCoder encodeCGPoint:self.gradientEndPoint forKey:NSStringFromSelector(@selector(gradientEndPoint))];
+    [aCoder encodeObject:self.innerShadows forKey:NSStringFromSelector(@selector(innerShadows))];
+    [aCoder encodeObject:self.innerShadowBlendModes forKey:NSStringFromSelector(@selector(innerShadowBlendModes))];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [self initialize];
+        NSAttributedString* as = [aDecoder decodeObjectOfClass:NSAttributedString.class forKey:NSStringFromSelector(@selector(attributedText))];
+        NSArray* strokeWidths = [aDecoder decodeObjectOfClass:NSArray.class forKey:NSStringFromSelector(@selector(strokeWidths))];
+        NSArray* strokeColors = [aDecoder decodeObjectOfClass:NSArray.class forKey:NSStringFromSelector(@selector(strokeColors))];
+        CGFloat minScale = [aDecoder decodeFloatForKey:NSStringFromSelector(@selector(minimumScaleFactor))];
+        CGSize maxSize = [aDecoder decodeCGSizeForKey:NSStringFromSelector(@selector(maxSize))];
+        NSArray* gradientColors = [aDecoder decodeObjectOfClass:NSArray.class forKey:NSStringFromSelector(@selector(gradientColors))];
+        NSArray* innerShadows = [aDecoder decodeObjectOfClass:NSArray.class forKey:NSStringFromSelector(@selector(innerShadows))];
+        NSArray* innerShadowBlendModes = [aDecoder decodeObjectOfClass:NSArray.class forKey:NSStringFromSelector(@selector(innerShadowBlendModes))];
+        CGPoint gradientStart = [aDecoder decodeCGPointForKey:NSStringFromSelector(@selector(gradientStartPoint))];
+        CGPoint gradientEnd = [aDecoder decodeCGPointForKey:NSStringFromSelector(@selector(gradientEndPoint))];
+        self.maxSize = maxSize;
+        self.minimumScaleFactor = minScale;
+        self.strokeWidths = strokeWidths;
+        self.strokeColors = strokeColors;
+        self.gradientColors = gradientColors;
+        self.gradientStartPoint = gradientStart;
+        self.gradientEndPoint = gradientEnd;
+        self.innerShadows = innerShadows;
+        self.innerShadowBlendModes = innerShadowBlendModes;
+        self.attributedText = as;
+    }
+    
+    return self;
+}
+
 
 #pragma mark - Copy
 
