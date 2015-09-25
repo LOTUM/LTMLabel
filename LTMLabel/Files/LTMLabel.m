@@ -1,24 +1,3 @@
-//
-// Copyright (c) 2015 LOTUM GmbH (http://lotum.com/)
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
 #import "LTMLabel.h"
 
 @interface LTMLabelLayoutManager : NSLayoutManager
@@ -204,7 +183,7 @@
     {
         maxStroke = ((NSNumber *)[self.strokeWidths valueForKeyPath:@"@max.self"]).floatValue;
     }
-
+    
     if(_renderMask)
     {
         if(drawStroke)
@@ -235,7 +214,7 @@
             CGContextSetLineWidth(graphicsContext, strokeSize.floatValue);
             CGContextSetLineJoin(graphicsContext, kCGLineJoinRound);
             [strokeColor setStroke];
-        
+            
             [super showCGGlyphs:glyphs
                       positions:positions
                           count:glyphCount
@@ -296,9 +275,17 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+        [self initialize];
+    return self;
+}
+
 - (void)initialize
 {
     _maxSize = self.bounds.size;
+    _maxStrokeWidth = 0;
     _minimumScaleFactor = 1.f;
     _layoutManager = [[LTMLabelLayoutManager alloc] init];
     _textContainer = [[LTMLabelTextContainer alloc] init];
@@ -423,7 +410,7 @@
     CGPoint startDrawingPoint = self.bounds.origin;
     if(textRect.size.height < self.bounds.size.height)
     {
-        startDrawingPoint.y = (self.bounds.size.height - textRect.size.height) / 2;
+        startDrawingPoint.y = roundf((self.bounds.size.height - textRect.size.height) / 2);
     }
     
     NSRange glyphRange = [_layoutManager glyphRangeForTextContainer:_textContainer];
@@ -505,12 +492,19 @@
     [leftAlignedAs removeAttribute:NSParagraphStyleAttributeName
                              range:NSMakeRange(0, leftAlignedAs.length)];
     
+    CGRect originalRect = [self textRectForWidth:contentRect.size.width]; //rect incl lineSpacing
+    CGRect withoutParagraphRect = [leftAlignedAs boundingRectWithSize:contentRect.size
+                                                              options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                                              context:nil];
+    CGFloat lineSpacingDifference = originalRect.size.height - withoutParagraphRect.size.height;
+    contentRect.size.height -= lineSpacingDifference;
+    
     //TODO: fix when paragraph style changes text bounds by kerning or line height
     
     NSStringDrawingContext *stringCtx = [[NSStringDrawingContext alloc] init];
     stringCtx.minimumScaleFactor = self.minimumScaleFactor;
     [leftAlignedAs boundingRectWithSize:contentRect.size
-                                options:NSStringDrawingUsesLineFragmentOrigin
+                                options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
                                 context:stringCtx];
     
     if (stringCtx.actualScaleFactor < 1)
@@ -653,7 +647,6 @@
     
     return self;
 }
-
 
 #pragma mark - Copy
 
@@ -822,7 +815,7 @@
 -(void)setFont:(UIFont *)font
 {
     _font = font;
-   [self checkCompatibility];
+    [self checkCompatibility];
 }
 
 -(NSTextAlignment)textAlignment
