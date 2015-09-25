@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "LTMLabel"
-  s.version             = "1.0.1"
+  s.version             = "1.0.2"
   s.summary             = "Label with capability to multiple stroke, multiple inner shadow, gradient and resizing. Supports attributed strings"
   s.description         = <<-DESC
                           LTMLabel draws attributed strings with all their options (Tabs, different fonts, colors, attachments) and adds the possibility to draw multiple strokes, multiple inner shadow and/or a gradient
