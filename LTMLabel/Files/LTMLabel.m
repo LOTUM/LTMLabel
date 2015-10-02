@@ -366,6 +366,7 @@
 {
     if(attributedText)
     {
+        [_textStorage removeLayoutManager:_layoutManager];
         _textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedText];
         [_textStorage addLayoutManager:_layoutManager];
     }
