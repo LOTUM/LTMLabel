@@ -21,7 +21,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LTMLabel : UIView <NSCopying, NSSecureCoding>
+@interface LTMLabel : UIView <NSCopying>
 
 @property (nonatomic) NSAttributedString *attributedText;
 
