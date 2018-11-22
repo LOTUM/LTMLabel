@@ -10,7 +10,7 @@ LTMLabel* label = [[LTMLabel alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
 label.attributedString = [[NSAttributedString alloc] initWithString:@"Test text to draw"];
 ```
 
-###Add stroke
+### Add stroke
 
 To add a single stroke:
 ```objective-c
@@ -25,7 +25,7 @@ label.strokeWidths = @[@3, @6];
 ```
 Notice that stroke width is the overall width and not added. So the white stroke will have a width of 3 and the black a width of 6 but 3 of this 6 will be overlaid by the white one.
 
-###Add inner shadow
+### Add inner shadow
 To add a single inner shadow you set a NSShadow object to the `innerShadow` property:
 ```objective-c
 NSShadow* shadow = [[NSShadow alloc] init];
@@ -37,7 +37,7 @@ label.innerShadow = shadow;
 
 To add multiple inner shadows add multiple shadow objects to the `innerShadows`array.
 
-#####Inner shadow blend modes
+##### Inner shadow blend modes
 You have the possibility to alter the inner shadow blend mode with the property `innerShadowBlendMode` or `innerShadowBlendModes`
 
 ```objective-c
@@ -47,7 +47,7 @@ label.innerShadowBlendMode = kCGBlendModeDarken;
 label.innerShadowBlendModes = @[@(kCGBlendModeDarken), @(kCGBlendModeOverlay)];
 ```
 
-###Add gradient
+### Add gradient
 
 You can set the gradient start and end point and the different colors. Default is a linear gradient from top to bottom:
 ```objective-c
@@ -64,10 +64,10 @@ label.gradientStartPoint = CGPointMake(0, 0.5);
 label.gradientEndPoint = CGPointMake(1, 0.5);
 ```
 
-###Font scaling
+### Font scaling
 With setting the `minimumScaleFactor` property to a value smaller than 1 you achieve a font scaling in case the label's text doesn't fit in its frame.
 
-###Frame resizing
+### Frame resizing
 In case you want your label to grow in height or width depended on its content text length you set the `maxSize` property. This defines the maximum size to which the label is allowed to grow. With setting the attributed string the new label size is calculated so that you can access its new size immediately and perform further positioning with the label in its new size.
 
 To create a label which grows in height and scales down its text:
@@ -77,12 +77,12 @@ growAndScaleLabel.minimumScaleFactor = 0.75;
 growAndScaleLabel.maxSize = CGSizeMake(CGRectGetWidth(growAndScaleLabel.bounds), 150);
 ```
 
-##Credits
+## Credits
 Original source and inspiration from:
 
 * [THLabel by Tobias Hagemann](https://github.com/MuscleRumble/THLabel)
 
-##Contact
+## Contact
 
 * [http://www.lotum.de](http://www.lotum.de)
 * github@lotum.de
